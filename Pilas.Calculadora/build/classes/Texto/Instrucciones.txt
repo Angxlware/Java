@@ -1,0 +1,31 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   CALCULADORA A BASE DE COMANDOS USANDO PILAS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+ [i] COMANDOS
+     ldc: Añadir número a la pila
+     add: Sumar la pila
+     sub: Restar la pila
+     mul: Multiplicar la pila
+     div: Dividir la pila
+     stp: Terminar secuencia de comandos
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ [i] EJEMPLO
+ldc 10.6
+ldc 5.2
+add
+stp
+ [i] LA SECUENCIA NOS DARÍA 15.8 DE RESULTADO
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ [i] QUE NO SE PUEDE HACER
+     1: Iniciar o terminar una linea con algo 
+        que no sea parte del comando o del
+        numero (incluyendo espacios)
+     2: Intentar añadir un número sin espaciarlo
+        del comando 'ldc'
+     4: Utilizar cualquier operacion sin haber
+        introducido dos numeros a la pila
+     5: Intentar realizar una operacion seguido
+        de una anterior
+     6: No terminar la secuencia de comandos
+        utilizando 'stp'
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
