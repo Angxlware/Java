@@ -10,7 +10,7 @@ public class DatabaseConnection {
 
     public DatabaseConnection() {
         this.DRIVER = "jdbc:sqlite";
-        this.URL = "src/DataBase/Escuela.db";
+        this.URL = "Escuela.db";
         this.connection = null;
     }
 

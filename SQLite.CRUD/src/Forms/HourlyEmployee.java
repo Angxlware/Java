@@ -1,6 +1,5 @@
 package Forms;
 
-import Database.DataManager;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -11,6 +10,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Frame;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,17 +18,20 @@ import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-public final class HourlyEmployee extends javax.swing.JInternalFrame {
+public class HourlyEmployee extends javax.swing.JFrame {
 
-    private final DataManager DATA_MANAGER;
-    private final DefaultTableModel EMPLOYEES_TABLE_MODEL;
+    final Database.DataManager DATA_MANAGER;
+    final DefaultTableModel EMPLOYEES_TABLE_MODEL;
 
     public HourlyEmployee() {
-
         initComponents();
+
+        setLocationRelativeTo(null);
+        this.setIconImage(new ImageIcon("AppIcon.png").getImage());
 
         EMPLOYEES_TABLE_MODEL = new DefaultTableModel() {
             @Override
@@ -43,234 +46,274 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
         EMPLOYEES_TABLE_MODEL.addColumn("HORAS TRABAJADAS");
         EMPLOYEES_TABLE_MODEL.addColumn("PAGO POR HORA");
         tblEmployees.setModel(EMPLOYEES_TABLE_MODEL);
-        tblEmployees.getTableHeader().setReorderingAllowed(false);
 
-        DATA_MANAGER = new DataManager();
+        DATA_MANAGER = new Database.DataManager();
         showEmployees();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        button2 = new Components.Button();
+        button1 = new Components.Button();
+        label1 = new Components.Label();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtRFC = new javax.swing.JTextField();
-        txtHourly = new javax.swing.JTextField();
-        txtHoursWorked = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
-        cmbPosition = new javax.swing.JComboBox<>();
-        cmbDepartment = new javax.swing.JComboBox<>();
-        btnClose = new javax.swing.JButton();
-        btnRegister = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnCenter = new javax.swing.JButton();
+        label2 = new Components.Label();
+        label4 = new Components.Label();
+        label5 = new Components.Label();
+        label6 = new Components.Label();
+        label7 = new Components.Label();
+        txtHoursWorked = new Components.TextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        txtPosition = new Components.TextField();
+        txtHourly = new Components.TextField();
+        txtDepartment = new Components.TextField();
+        txtName = new Components.TextField();
+        txtRFC = new Components.TextField();
+        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        btnGenerateCheck = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        btnDelete = new Components.Button();
+        btnUpdate = new Components.Button();
+        btnSave = new Components.Button();
+        btnGenerateCheck = new Components.Button();
+        btnClean = new Components.Button();
+        btnGoBack = new Components.Button();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmployees = new javax.swing.JTable();
-        btnClear = new javax.swing.JButton();
-        btnSearch = new javax.swing.JToggleButton();
+        tblEmployees = new Components.Table();
+        label8 = new Components.Label();
+        btnSearch = new Components.ToggleButton();
+        lblBackground = new javax.swing.JLabel();
 
-        setClosable(true);
-        setIconifiable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Empleado por Horas");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameClosed(evt);
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+        setUndecorated(true);
+        setResizable(false);
+
+        jPanel1.setLayout(null);
+
+        button2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnMinimize.png"))); // NOI18N
+        button2.setPressedIcon(null);
+        button2.setRolloverIcon(null);
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
             }
         });
+        jPanel1.add(button2);
+        button2.setBounds(1140, 10, 50, 50);
 
-        jPanel2.setLayout(null);
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel1.setText("Pago por Hora:");
-        jPanel2.add(jLabel1);
-        jLabel1.setBounds(10, 240, 150, 30);
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel2.setText("RFC:");
-        jPanel2.add(jLabel2);
-        jLabel2.setBounds(10, 40, 150, 30);
-
-        jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel3.setText("Nombre:");
-        jPanel2.add(jLabel3);
-        jLabel3.setBounds(10, 80, 150, 30);
-
-        jLabel4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel4.setText("Departamento:");
-        jPanel2.add(jLabel4);
-        jLabel4.setBounds(10, 120, 150, 30);
-
-        jLabel5.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel5.setText("Puesto:");
-        jPanel2.add(jLabel5);
-        jLabel5.setBounds(10, 160, 150, 30);
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel6.setText("Horas Trabajadas:");
-        jPanel2.add(jLabel6);
-        jLabel6.setBounds(10, 200, 150, 30);
-
-        txtRFC.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        txtRFC.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtRFCKeyTyped(evt);
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnClose.png"))); // NOI18N
+        button1.setPressedIcon(null);
+        button1.setRolloverIcon(null);
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
             }
         });
-        jPanel2.add(txtRFC);
-        txtRFC.setBounds(160, 40, 490, 30);
+        jPanel1.add(button1);
+        button1.setBounds(1200, 10, 50, 50);
 
-        txtHourly.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        txtHourly.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtHourlyKeyTyped(evt);
-            }
-        });
-        jPanel2.add(txtHourly);
-        txtHourly.setBounds(160, 240, 490, 30);
+        label1.setForeground(new java.awt.Color(255, 255, 255));
+        label1.setText("Empleado por Horas");
+        label1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 52)); // NOI18N
+        jPanel1.add(label1);
+        label1.setBounds(10, 0, 1250, 70);
 
-        txtHoursWorked.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(255, 50, 50));
+        jLabel1.setOpaque(true);
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1260, 70);
+
+        label2.setText("Pago por Hora:");
+        jPanel1.add(label2);
+        label2.setBounds(10, 280, 240, 40);
+
+        label4.setText("Nombre:");
+        jPanel1.add(label4);
+        label4.setBounds(10, 120, 240, 40);
+
+        label5.setText("Departamento:");
+        jPanel1.add(label5);
+        label5.setBounds(10, 160, 290, 40);
+
+        label6.setText("Puesto:");
+        jPanel1.add(label6);
+        label6.setBounds(10, 200, 290, 38);
+
+        label7.setText("Horas Trabajadas:");
+        jPanel1.add(label7);
+        label7.setBounds(10, 240, 290, 40);
+
+        txtHoursWorked.setNextFocusableComponent(txtHourly);
         txtHoursWorked.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtHoursWorkedKeyTyped(evt);
             }
         });
-        jPanel2.add(txtHoursWorked);
-        txtHoursWorked.setBounds(160, 200, 490, 30);
+        jPanel1.add(txtHoursWorked);
+        txtHoursWorked.setBounds(300, 240, 570, 38);
 
-        txtName.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jSeparator1.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator1.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(300, 276, 570, 10);
+
+        txtPosition.setNextFocusableComponent(txtHoursWorked);
+        txtPosition.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPositionKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtPosition);
+        txtPosition.setBounds(300, 200, 570, 38);
+
+        txtHourly.setNextFocusableComponent(btnSave);
+        txtHourly.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHourlyKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtHourly);
+        txtHourly.setBounds(300, 280, 570, 38);
+
+        txtDepartment.setNextFocusableComponent(txtPosition);
+        txtDepartment.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDepartmentKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtDepartment);
+        txtDepartment.setBounds(300, 160, 570, 38);
+
+        txtName.setNextFocusableComponent(txtDepartment);
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNameKeyTyped(evt);
             }
         });
-        jPanel2.add(txtName);
-        txtName.setBounds(160, 80, 490, 30);
+        jPanel1.add(txtName);
+        txtName.setBounds(300, 120, 570, 38);
 
-        cmbPosition.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        cmbPosition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un puesto", "Jefe de departamento", "Docente" }));
-        jPanel2.add(cmbPosition);
-        cmbPosition.setBounds(160, 160, 490, 30);
-
-        cmbDepartment.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        cmbDepartment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un departamento", "Ingeniería en Sistemas Computacionales", "Ingeniería en Mecatrónica", "Ingeniería en Aeronáutica" }));
-        jPanel2.add(cmbDepartment);
-        cmbDepartment.setBounds(160, 120, 490, 30);
-
-        btnClose.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnClose.setText("Cerrar");
-        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnClose.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCloseActionPerformed(evt);
+        txtRFC.setNextFocusableComponent(txtName);
+        txtRFC.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRFCKeyTyped(evt);
             }
         });
-        jPanel2.add(btnClose);
-        btnClose.setBounds(850, 220, 170, 50);
+        jPanel1.add(txtRFC);
+        txtRFC.setBounds(300, 80, 570, 38);
 
-        btnRegister.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnRegister.setText("Registrar");
-        btnRegister.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnRegister.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnRegister);
-        btnRegister.setBounds(670, 40, 170, 50);
+        jSeparator2.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator2.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator2);
+        jSeparator2.setBounds(300, 276, 570, 10);
 
-        btnDelete.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnDelete.setText("Eliminar");
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jSeparator3.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator3.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator3);
+        jSeparator3.setBounds(300, 316, 570, 10);
+
+        jSeparator4.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator4.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator4);
+        jSeparator4.setBounds(300, 236, 570, 10);
+
+        jSeparator5.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator5.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator5);
+        jSeparator5.setBounds(300, 196, 570, 10);
+
+        jSeparator6.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator6.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator6);
+        jSeparator6.setBounds(300, 156, 570, 10);
+
+        jSeparator7.setBackground(new java.awt.Color(255, 51, 51));
+        jSeparator7.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel1.add(jSeparator7);
+        jSeparator7.setBounds(300, 116, 570, 10);
+
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnDelete.png"))); // NOI18N
         btnDelete.setEnabled(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnDelete.setNextFocusableComponent(btnUpdate);
+        btnDelete.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnDeletePressed.png"))); // NOI18N
+        btnDelete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnDeleteRollover.png"))); // NOI18N
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnDelete);
-        btnDelete.setBounds(670, 100, 170, 50);
+        jPanel1.add(btnDelete);
+        btnDelete.setBounds(880, 140, 180, 50);
 
-        btnUpdate.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnUpdate.setText("Actualizar");
-        btnUpdate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnUpdate.png"))); // NOI18N
         btnUpdate.setEnabled(false);
-        btnUpdate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnUpdate.setNextFocusableComponent(btnGenerateCheck);
+        btnUpdate.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnUpdatePressed.png"))); // NOI18N
+        btnUpdate.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnUpdateRollover.png"))); // NOI18N
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
-        jPanel2.add(btnUpdate);
-        btnUpdate.setBounds(670, 160, 170, 50);
+        jPanel1.add(btnUpdate);
+        btnUpdate.setBounds(880, 200, 180, 50);
 
-        btnCenter.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnCenter.setText("Centrar");
-        btnCenter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCenter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCenter.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSave.png"))); // NOI18N
+        btnSave.setNextFocusableComponent(btnSearch);
+        btnSave.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSavePressed.png"))); // NOI18N
+        btnSave.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSaveRollover.png"))); // NOI18N
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCenterActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
-        jPanel2.add(btnCenter);
-        btnCenter.setBounds(850, 160, 170, 50);
-        jPanel2.add(jSeparator3);
-        jSeparator3.setBounds(0, 280, 1030, 10);
+        jPanel1.add(btnSave);
+        btnSave.setBounds(880, 80, 180, 50);
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Información del Empleado");
-        jPanel2.add(jLabel8);
-        jLabel8.setBounds(0, 0, 660, 37);
-
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Controles");
-        jPanel2.add(jLabel9);
-        jLabel9.setBounds(710, 0, 270, 40);
-
-        btnGenerateCheck.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGenerateCheck.setText("Generar Cheque");
-        btnGenerateCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGenerateCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnGenerateCheck.png"))); // NOI18N
         btnGenerateCheck.setEnabled(false);
-        btnGenerateCheck.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGenerateCheck.setNextFocusableComponent(btnClean);
+        btnGenerateCheck.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnGenerateCheckPressed.png"))); // NOI18N
+        btnGenerateCheck.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnGenerateCheckRollover.png"))); // NOI18N
         btnGenerateCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerateCheckActionPerformed(evt);
             }
         });
-        jPanel2.add(btnGenerateCheck);
-        btnGenerateCheck.setBounds(850, 40, 170, 50);
+        jPanel1.add(btnGenerateCheck);
+        btnGenerateCheck.setBounds(1070, 110, 180, 50);
 
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel2.add(jSeparator4);
-        jSeparator4.setBounds(660, 0, 10, 280);
+        btnClean.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnClean.png"))); // NOI18N
+        btnClean.setNextFocusableComponent(btnGoBack);
+        btnClean.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnCleanPressed.png"))); // NOI18N
+        btnClean.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnCleanRollover.png"))); // NOI18N
+        btnClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCleanActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnClean);
+        btnClean.setBounds(1070, 170, 180, 50);
+
+        btnGoBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnGoBack.png"))); // NOI18N
+        btnGoBack.setNextFocusableComponent(txtRFC);
+        btnGoBack.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnGoBackPressed.png"))); // NOI18N
+        btnGoBack.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnGoBackRollover.png"))); // NOI18N
+        btnGoBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoBackActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGoBack);
+        btnGoBack.setBounds(1070, 230, 180, 50);
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -290,50 +333,91 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tblEmployees);
 
-        jPanel2.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 290, 1010, 290);
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 330, 1240, 300);
 
-        btnClear.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnClear.setText("Limpiar");
-        btnClear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnClear.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnClear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnClearActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnClear);
-        btnClear.setBounds(850, 100, 170, 50);
+        label8.setText("RFC:");
+        jPanel1.add(label8);
+        label8.setBounds(10, 80, 240, 40);
 
-        btnSearch.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnSearch.setText("Buscar");
-        btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSearch.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSearch.png"))); // NOI18N
+        btnSearch.setText("");
+        btnSearch.setNextFocusableComponent(btnClean);
+        btnSearch.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSearchPressed.png"))); // NOI18N
+        btnSearch.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSearchRollover.png"))); // NOI18N
+        btnSearch.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/btnSearchPressed.png"))); // NOI18N
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
             }
         });
-        jPanel2.add(btnSearch);
-        btnSearch.setBounds(670, 220, 170, 50);
+        jPanel1.add(btnSearch);
+        btnSearch.setBounds(880, 260, 180, 50);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Background.png"))); // NOI18N
+        jPanel1.add(lblBackground);
+        lblBackground.setBounds(0, 70, 1260, 570);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1030, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+    private void txtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyTyped
+        Libraries.Validations.validateRFC(txtRFC, evt);
+    }//GEN-LAST:event_txtRFCKeyTyped
 
-        //Validation
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        Libraries.Validations.validateName(txtName, evt);
+    }//GEN-LAST:event_txtNameKeyTyped
+
+    private void txtDepartmentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDepartmentKeyTyped
+        Libraries.Validations.validateDepartment(txtDepartment, evt);
+    }//GEN-LAST:event_txtDepartmentKeyTyped
+
+    private void txtPositionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPositionKeyTyped
+        Libraries.Validations.validatePosition(txtPosition, evt);
+    }//GEN-LAST:event_txtPositionKeyTyped
+
+    private void txtHoursWorkedKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoursWorkedKeyTyped
+        Libraries.Validations.validateHoursWorked(txtHoursWorked, evt);
+    }//GEN-LAST:event_txtHoursWorkedKeyTyped
+
+    private void txtHourlyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHourlyKeyTyped
+        Libraries.Validations.validateHourly(txtHourly, evt);
+    }//GEN-LAST:event_txtHourlyKeyTyped
+
+    private void tblEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMouseClicked
+
+        int selectedRoxIndex = tblEmployees.getSelectedRow();
+
+        txtRFC.setText(tblEmployees.getValueAt(selectedRoxIndex, 0).toString());
+        txtName.setText(tblEmployees.getValueAt(selectedRoxIndex, 1).toString());
+        txtDepartment.setText(tblEmployees.getValueAt(selectedRoxIndex, 2).toString());
+        txtPosition.setText(tblEmployees.getValueAt(selectedRoxIndex, 3).toString());
+        txtHoursWorked.setText(tblEmployees.getValueAt(selectedRoxIndex, 4).toString());
+        txtHourly.setText(tblEmployees.getValueAt(selectedRoxIndex, 5).toString());
+
+        disableRegister();
+        btnDelete.setEnabled(true);
+        btnUpdate.setEnabled(true);
+    }//GEN-LAST:event_tblEmployeesMouseClicked
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+
         if (isAnyFieldEmpty()) {
             JOptionPane.showMessageDialog(rootPane,
                     "Complete todos los campos antes de guardar",
@@ -349,8 +433,8 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
                     + "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
                     txtRFC.getText(),
                     txtName.getText(),
-                    cmbDepartment.getSelectedItem(),
-                    cmbPosition.getSelectedItem(),
+                    txtDepartment.getText(),
+                    txtPosition.getText(),
                     txtHoursWorked.getText(),
                     txtHourly.getText()));
             JOptionPane.showMessageDialog(rootPane,
@@ -358,11 +442,14 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
                     "Guardado exitoso",
                     1);
             showEmployees();
-            clear();
+            clean();
         } catch (SQLException e) {
-            throwError(e);
+            JOptionPane.showMessageDialog(rootPane,
+                    "Hubo un problema al mostrar los empleados",
+                    "Error de conexión",
+                    0);
         }
-    }//GEN-LAST:event_btnRegisterActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
@@ -375,7 +462,7 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
                     "Eliminación exitosa",
                     1);
             showEmployees();
-            clear();
+            clean();
             enableRegister();
         } catch (SQLException e) {
             throwError(e);
@@ -384,7 +471,6 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-        //Validation
         if (isAnyFieldEmpty()) {
             JOptionPane.showMessageDialog(rootPane,
                     "Complete todos los campos antes de actualizar",
@@ -394,93 +480,40 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
         }
 
         try {
-            DATA_MANAGER.executeUpdate(""
-                    + "UPDATE EmpleadosPorHora SET "
-                    + "NOMBRE = '" + txtName.getText() + "', "
-                    + "DEPARTAMENTO = '" + cmbDepartment.getSelectedItem() + "', "
-                    + "PUESTO = '" + cmbPosition.getSelectedItem() + "', "
-                    + "HORAS_TRABAJADAS = '" + txtHoursWorked.getText() + "', "
-                    + "PAGO_HORA = '" + txtHourly.getText() + "' "
-                    + "WHERE RFC = '" + txtRFC.getText() + "'");
+            DATA_MANAGER.executeUpdate(String.format(
+                    "UPDATE EmpleadosPorHora SET "
+                    + "NOMBRE = '%s', "
+                    + "DEPARTAMENTO = '%s', "
+                    + "PUESTO = '%s', "
+                    + "HORAS_TRABAJADAS = '%s', "
+                    + "PAGO_HORA = '%s' "
+                    + "WHERE RFC = '%s'",
+                    txtName.getText(),
+                    txtDepartment.getText(),
+                    txtPosition.getText(),
+                    txtHoursWorked.getText(),
+                    txtHourly.getText(),
+                    txtRFC.getText()));
             JOptionPane.showMessageDialog(rootPane,
                     "El empleado ha sido actualizado exitosamente",
                     "Actualización exitosa",
                     1);
             showEmployees();
-            clear();
+            clean();
             enableRegister();
         } catch (SQLException e) {
             throwError(e);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
-    private void btnGenerateCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateCheckActionPerformed
-
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int returnedValue = fileChooser.showSaveDialog(rootPane);
-
-        if (returnedValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileChooser.getSelectedFile();
-            String fileName = file.toString() + "\\" + txtRFC.getText() + ".pdf";
-
-            try {
-                generateCheckPDF(fileName);
-                JOptionPane.showMessageDialog(rootPane, 
-                        "El archivo fue generado en " + fileName,
-                        "Cheque generado con éxito",
-                        1);
-            } catch (FileNotFoundException | DocumentException e) {
-                JOptionPane.showMessageDialog(rootPane,
-                        "Ha ocurrido un error inesperado al generar el documento",
-                        "Error al generar cheque",
-                        0);
-            }
-        }
-    }//GEN-LAST:event_btnGenerateCheckActionPerformed
-
-    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-
-        clear();
-        enableRegister();
-        disableSearch();
-        tblEmployees.clearSelection();
-    }//GEN-LAST:event_btnClearActionPerformed
-
-    private void btnCenterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCenterActionPerformed
-
-        setLocation(((Menu.dpScreen.getWidth() - this.getWidth()) / 2),
-                ((Menu.dpScreen.getHeight() - this.getHeight()) / 2));
-    }//GEN-LAST:event_btnCenterActionPerformed
-
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-
-        this.dispose();
-    }//GEN-LAST:event_btnCloseActionPerformed
-
-    private void tblEmployeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMouseClicked
-
-        int selectedRowIndex = tblEmployees.getSelectedRow();
-
-        txtRFC.setText(tblEmployees.getValueAt(selectedRowIndex, 0).toString());
-        txtName.setText(tblEmployees.getValueAt(selectedRowIndex, 1).toString());
-        cmbDepartment.setSelectedItem(tblEmployees.getValueAt(selectedRowIndex, 2).toString());
-        cmbPosition.setSelectedItem(tblEmployees.getValueAt(selectedRowIndex, 3).toString());
-        txtHoursWorked.setText(tblEmployees.getValueAt(selectedRowIndex, 4).toString());
-        txtHourly.setText(tblEmployees.getValueAt(selectedRowIndex, 5).toString());
-
-        disableRegister();
-    }//GEN-LAST:event_tblEmployeesMouseClicked
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
 
         if (btnSearch.isSelected()) {
             enableSearch();
-            clear();
+            clean();
         } else {
             disableSearch();
 
-            //Validation
             if (txtRFC.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(rootPane,
                         "Complete el campo antes de buscar",
@@ -506,33 +539,59 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
                 throwError(e);
                 showEmployees();
             }
-            clear();
+            clean();
         }
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void txtRFCKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRFCKeyTyped
+    private void btnGenerateCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateCheckActionPerformed
 
-        MyLibraries.Validations.validateRFC(txtRFC, evt);
-    }//GEN-LAST:event_txtRFCKeyTyped
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int returnedValue = fileChooser.showSaveDialog(rootPane);
 
-    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        if (returnedValue == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            String fileName = file.toString() + "\\Empleado_por_Horas_" + txtRFC.getText() + ".pdf";
 
-        MyLibraries.Validations.validateName(txtName, evt);
-    }//GEN-LAST:event_txtNameKeyTyped
+            try {
+                generateCheckPDF(fileName);
+                JOptionPane.showMessageDialog(rootPane,
+                        "El archivo fue generado en " + fileName,
+                        "Cheque generado con éxito",
+                        1);
+            } catch (FileNotFoundException | DocumentException e) {
+                JOptionPane.showMessageDialog(rootPane,
+                        "Ha ocurrido un error inesperado al generar el documento",
+                        "Error al generar cheque",
+                        0);
+            }
+        }
+    }//GEN-LAST:event_btnGenerateCheckActionPerformed
 
-    private void txtHoursWorkedKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHoursWorkedKeyTyped
+    private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
 
-        MyLibraries.Validations.validateHoursWorked(txtHoursWorked, evt);
-    }//GEN-LAST:event_txtHoursWorkedKeyTyped
+        clean();
+        enableRegister();
+        disableSearch();
+        tblEmployees.clearSelection();
+        showEmployees();
+    }//GEN-LAST:event_btnCleanActionPerformed
 
-    private void txtHourlyKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHourlyKeyTyped
+    private void btnGoBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoBackActionPerformed
 
-        MyLibraries.Validations.validateHourly(txtHourly, evt);
-    }//GEN-LAST:event_txtHourlyKeyTyped
+        new Menu().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnGoBackActionPerformed
 
-    private void formInternalFrameClosed(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosed
-        Menu.jMenuItem3.setEnabled(true);
-    }//GEN-LAST:event_formInternalFrameClosed
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+
+        System.exit(0);
+    }//GEN-LAST:event_button1ActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+
+        setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_button2ActionPerformed
 
     public void generateCheckPDF(String fileName) throws FileNotFoundException, DocumentException {
 
@@ -571,7 +630,7 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
         Font fntTitle = new Font(FontFamily.TIMES_ROMAN, 20.0f, Font.BOLD, BaseColor.BLACK);
         Paragraph pgTitle = new Paragraph();
         pgTitle.setFont(fntTitle);
-        pgTitle.add("\n\nCheque del empleado " + txtRFC.getText() + "\n\n");
+        pgTitle.add("\n\nCheque de Empleado por Horas\n\n");
         pgTitle.setAlignment(Element.ALIGN_CENTER);
         document.add(pgTitle);
 
@@ -582,9 +641,9 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
         table.addCell("\nNOMBRE\n\n");
         table.addCell("\n" + txtName.getText() + "\n\n");
         table.addCell("\nDEPARTAMENTO\n\n");
-        table.addCell("\n" + cmbDepartment.getSelectedItem().toString() + "\n\n");
+        table.addCell("\n" + txtDepartment.getText() + "\n\n");
         table.addCell("\nPUESTO\n\n");
-        table.addCell("\n" + cmbPosition.getSelectedItem().toString() + "\n\n");
+        table.addCell("\n" + txtPosition.getText() + "\n\n");
         table.addCell("\nHORAS TRABAJADAS\n\n");
         table.addCell("\n" + txtHoursWorked.getText() + "\n\n");
         table.addCell("\nPAGO POR HORA\n\n");
@@ -599,6 +658,64 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
 
         //Close document
         document.close();
+    }
+
+    public void enableSearch() {
+        txtName.setEnabled(false);
+        txtDepartment.setEnabled(false);
+        txtPosition.setEnabled(false);
+        txtHoursWorked.setEnabled(false);
+        txtHourly.setEnabled(false);
+        btnSave.setEnabled(false);
+    }
+
+    public void disableSearch() {
+        btnSearch.setSelected(false);
+        txtName.setEnabled(true);
+        txtDepartment.setEnabled(true);
+        txtPosition.setEnabled(true);
+        txtHoursWorked.setEnabled(true);
+        txtHourly.setEnabled(true);
+        btnSave.setEnabled(true);
+    }
+
+    public void enableRegister() {
+
+        txtRFC.setEnabled(true);
+        btnSave.setEnabled(true);
+        btnDelete.setEnabled(false);
+        btnUpdate.setEnabled(false);
+        btnSearch.setEnabled(true);
+        btnGenerateCheck.setEnabled(false);
+    }
+
+    public void disableRegister() {
+
+        txtRFC.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnDelete.setEnabled(true);
+        btnUpdate.setEnabled(true);
+        btnSearch.setEnabled(false);
+        btnGenerateCheck.setEnabled(true);
+    }
+
+    public void clean() {
+        txtRFC.setText(null);
+        txtName.setText(null);
+        txtDepartment.setText(null);
+        txtPosition.setText(null);
+        txtHoursWorked.setText(null);
+        txtHourly.setText(null);
+        txtRFC.requestFocus();
+    }
+
+    public boolean isAnyFieldEmpty() {
+        return (txtRFC.getText().isEmpty())
+                || (txtName.getText().isEmpty())
+                || (txtDepartment.getText().isEmpty())
+                || (txtPosition.getText().isEmpty())
+                || (txtHoursWorked.getText().isEmpty())
+                || (txtHourly.getText().isEmpty());
     }
 
     public final void showEmployees() {
@@ -620,68 +737,6 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
         } catch (SQLException e) {
             throwError(e);
         }
-    }
-
-    public void disableSearch() {
-
-        btnSearch.setSelected(false);
-        txtName.setEnabled(true);
-        cmbDepartment.setEnabled(true);
-        cmbPosition.setEnabled(true);
-        txtHoursWorked.setEnabled(true);
-        txtHourly.setEnabled(true);
-        btnRegister.setEnabled(true);
-    }
-
-    public void enableSearch() {
-
-        txtName.setEnabled(false);
-        cmbDepartment.setEnabled(false);
-        cmbPosition.setEnabled(false);
-        txtHoursWorked.setEnabled(false);
-        txtHourly.setEnabled(false);
-        btnRegister.setEnabled(false);
-    }
-
-    public void enableRegister() {
-
-        txtRFC.setEnabled(true);
-        btnRegister.setEnabled(true);
-        btnDelete.setEnabled(false);
-        btnUpdate.setEnabled(false);
-        btnSearch.setEnabled(true);
-        btnGenerateCheck.setEnabled(false);
-    }
-
-    public void disableRegister() {
-
-        txtRFC.setEnabled(false);
-        btnRegister.setEnabled(false);
-        btnDelete.setEnabled(true);
-        btnUpdate.setEnabled(true);
-        btnSearch.setEnabled(false);
-        btnGenerateCheck.setEnabled(true);
-    }
-
-    public void clear() {
-
-        txtRFC.setText(null);
-        txtName.setText(null);
-        cmbDepartment.setSelectedIndex(0);
-        cmbPosition.setSelectedIndex(0);
-        txtHoursWorked.setText(null);
-        txtHourly.setText(null);
-        txtRFC.requestFocus();
-    }
-
-    public boolean isAnyFieldEmpty() {
-
-        return (txtRFC.getText().isEmpty())
-                || (txtName.getText().isEmpty())
-                || (cmbDepartment.getSelectedIndex() == 0)
-                || (cmbPosition.getSelectedIndex() == 0)
-                || (txtHoursWorked.getText().isEmpty())
-                || (txtHourly.getText().isEmpty());
     }
 
     public void throwError(SQLException e) {
@@ -726,32 +781,39 @@ public final class HourlyEmployee extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCenter;
-    private javax.swing.JButton btnClear;
-    private javax.swing.JButton btnClose;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnGenerateCheck;
-    private javax.swing.JButton btnRegister;
-    private javax.swing.JToggleButton btnSearch;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbDepartment;
-    private javax.swing.JComboBox<String> cmbPosition;
+    private Components.Button btnClean;
+    private Components.Button btnDelete;
+    private Components.Button btnGenerateCheck;
+    private Components.Button btnGoBack;
+    private Components.Button btnSave;
+    private Components.ToggleButton btnSearch;
+    private Components.Button btnUpdate;
+    private Components.Button button1;
+    private Components.Button button2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable tblEmployees;
-    private javax.swing.JTextField txtHourly;
-    private javax.swing.JTextField txtHoursWorked;
-    private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtRFC;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private Components.Label label1;
+    private Components.Label label2;
+    private Components.Label label4;
+    private Components.Label label5;
+    private Components.Label label6;
+    private Components.Label label7;
+    private Components.Label label8;
+    private javax.swing.JLabel lblBackground;
+    private Components.Table tblEmployees;
+    private Components.TextField txtDepartment;
+    private Components.TextField txtHourly;
+    private Components.TextField txtHoursWorked;
+    private Components.TextField txtName;
+    private Components.TextField txtPosition;
+    private Components.TextField txtRFC;
     // End of variables declaration//GEN-END:variables
 }
